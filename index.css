@@ -5,14 +5,15 @@
     }
 
 .header {
-    padding: 4px;
+    padding: 10px;
 }
 
 
 .scramble {
     color: #9da7b3;
-    font-size: 30px;
-    font-size: 3.5vw;
+    font-size: 26px;
+    font-size: 3vw;
+    padding-left: 10px;
 }
 
 .next {
