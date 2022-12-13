@@ -1,0 +1,98 @@
+<!doctype html>
+
+<html>
+
+<head style="background: #2d333b">
+    <title>Scrambles</title>
+    
+    <meta name="description" content="scrambles">
+    <meta name="keywords" content="scrambles">
+    <link rel="stylesheet" href="index.css"> 
+    <div class="header">
+        <h1 style="color: #9da7b3">Generate, Scrambles!</h1>
+    </div>
+</head>
+
+
+<body>
+    
+
+    <!--<button class="next" onclick="getScramble()" id="next">Next</button> -->
+    
+    <div class="scramble">
+        <p id="scramble1">Loading Scramble...</p>
+        <p id="parity1"></p>
+        <p id="scramble2">Loading Scramble...</p>
+        <p id="parity2"></p>
+        <p id="scramble3">Loading Scramble...</p>
+        <p id="parity3"></p>
+    </div>
+    
+
+</body>
+</html>
+
+
+<script type="module">
+    import { randomScrambleForEvent } from "https://cdn.cubing.net/js/cubing/scramble";
+  
+
+    let scramble = await getScramble();
+
+    document.getElementById("scramble1").innerHTML = scramble.scram;
+    document.getElementById("parity1").innerHTML = scramble.parity;
+
+    scramble = await getScramble();
+    document.getElementById("scramble2").innerHTML = scramble.scram;
+    document.getElementById("parity2").innerHTML = scramble.parity;
+
+    scramble = await getScramble();
+    document.getElementById("scramble3").innerHTML = scramble.scram;
+    document.getElementById("parity3").innerHTML = scramble.parity;
+
+    
+    async function getScramble()
+    {
+        const scramble = await randomScrambleForEvent("333");
+        scramble.log();
+        let scramList = scramble.toString().split(" ");
+
+        //document.write(scramble.toString());
+        let count = 0;
+        for (let i=0; i < scramList.length; i++)
+        {
+            if(scramList[i].includes("2"))
+                count++;
+        }
+
+        let parity;
+        const is_even = (scramList.length - count) % 2 == 0;
+        if (is_even)
+            parity = "Parity: Even";
+        else 
+            parity = "Parity: Odd";
+        
+        
+        const scram = scramble.toString();
+        console.log(scram);
+        console.log(parity);
+        return {parity , scram};
+    }
+
+</script>
+
+
+
+
+<!--
+      <twisty-alg-viewer for="main-player"></twisty-alg-viewer>
+  <twisty-player id="main-player"></twisty-player>
+ 
+<script type="module">
+    import "https://cdn.cubing.net/js/cubing/twisty";
+    import { randomScrambleForEvent } from "https://cdn.cubing.net/js/cubing/scramble";
+    
+    const scramblePromise = randomScrambleForEvent("333");
+    document.querySelector("#main-player").alg = scramblePromise;
+  </script>
+ -->

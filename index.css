@@ -1,0 +1,25 @@
+* {
+    background: #1c2128;
+    
+    font-family: sans-serif;
+    }
+
+.header {
+    padding: 4px;
+}
+
+
+.scramble {
+    color: #9da7b3;
+}
+
+.next {
+    top: 95%;
+    left: 585px;
+    width: 120px;
+    color: #9da7b3;
+}
+
+.parity {
+    color: #9da7b3;
+}
